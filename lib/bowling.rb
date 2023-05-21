@@ -39,7 +39,7 @@ class Bowling
         @io.puts "running total: #{@running_total.sum}"
     end
 
-    def score_when_last_frame_spare
+    def  score_when_spare_on_previous_frame
         current_score?
 
         @io.puts "first roll score?"

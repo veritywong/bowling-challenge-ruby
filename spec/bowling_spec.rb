@@ -49,22 +49,6 @@ RSpec.describe 'bowling' do
         end
     end
 
-    context 'when spare' do
-        it 'doubles score of first bowl of next frame' do
-            io = double :io
-            
-            expect(io).to receive(:puts).with('number of knocked down pins?')
-            expect(io).to receive(:gets).and_return(2)
-            expect(io).to receive(:puts).with("first roll score?")
-            expect(io).to receive(:gets).and_return(2)
-            expect(io).to receive(:puts).with('frame: 2')
-            expect(io).to receive(:puts).with('running total: 14')
-
-            bowling = Bowling.new(io, 2, 10)
-            bowling.score_when_last_frame_spare
-        end
-    end
-
     context '10th frame with perfect score' do
         it 'totals to 300' do
             io = double :io
@@ -82,5 +66,22 @@ RSpec.describe 'bowling' do
             bowling.score_when_strikes_in_a_row
         end
     end
+
+    context 'when spare' do
+        it 'doubles score of first bowl of next frame' do
+            io = double :io
+            
+            expect(io).to receive(:puts).with('number of knocked down pins?')
+            expect(io).to receive(:gets).and_return(2)
+            expect(io).to receive(:puts).with("first roll score?")
+            expect(io).to receive(:gets).and_return(2)
+            expect(io).to receive(:puts).with('frame: 2')
+            expect(io).to receive(:puts).with('running total: 14')
+
+            bowling = Bowling.new(io, 2, 10)
+            bowling.score_when_spare_on_previous_frame
+        end
+    end
+
 
 end
